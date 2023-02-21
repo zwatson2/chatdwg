@@ -1,0 +1,77 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+}
+
+.menu, .main {
+  padding: 20px;
+}
+
+.horizontal {
+  display: flex;
+  flex-direction: row;
+}
+
+.vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.spaced {
+  justify-content: space-between;
+}
+
+.game-text {
+  justify-content: center;
+  align-items: left;
+  padding: 20px 10px;
+}
+
+.game-text > * {
+  margin: 0px;
+}
+
+.game > img {
+  width: 32px;
+  height: 32px;
+}
+
+.game {
+  align-items: center;
+}
+
+.menu {
+  width: 240px;
+  background-color: lightgray;
+}
+
+.main {
+  flex: 1;
+  background-color: lightblue;
+  align-items: center;
+  justify-content: center;
+}
+
+hr {
+  width: 100%;
+  border: 0.5px solid #333;
+}
+
+/* Hide left column when screen is less than 700px */
+@media screen and (max-width: 700px) {
+  .menu {
+    display: none;
+  }
+}
+
+.footnote {
+  font-size: 0.8em;
+  color: gray;
+  font-style: italic;
+}
