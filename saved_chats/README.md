@@ -7,10 +7,10 @@ To do this, the program loops through the `./html` directory and saves each page
 
 Once each page's chat log is exported as a `.csv` in the `./csv` folder, the `combine_chat_data()` function in `chatlogger.py` will combine all the files in the `./csv` folder and save them as `full_chat_log.csv` in the `./saved_chats` directory.
 
-## Instructions | How can I use this?
+## Instructions | *How can I use this?*
 Using this tool is simple when set up properly, but setup does require a few steps.
 
-### Software | Download the SingleFile extension
+### Software | *Download the SingleFile extension*
 Before running this script, download the *SingleFile* extension on your browser of choice. This extension makes sure that (1) all page HTML is exported and (2) saved pages have the proper naming convention for this script.
 
 **DOWNLOAD LINKS**
@@ -19,7 +19,7 @@ Before running this script, download the *SingleFile* extension on your browser 
 - [Firefox](https://addons.mozilla.org/en-US/firefox/addon/single-file/)
 - [GitHub](https://github.com/gildas-lormeau/SingleFile)
 
-### **File setup** | Organizing files to use this script
+### File setup | *Organizing files to use this script*
 To properly save files for this scrip, perform the following steps:
 1. Open the ChatGPT chat that you want to save
 2. Save the page with the SingleFile extension
@@ -31,5 +31,5 @@ To properly save files for this scrip, perform the following steps:
 
 When properly executed, the file `full_chat_log.csv` in the `/saved_chats` directory will contain all of the chats from all of the `.html` files in the `saved_chats/html` directory.
 
-## **Important** | Maintaining research integrity
+## Important | *Maintaining research integrity*
 *Please do not delete any files from the `saved_chats/html` directory. These files are the foundation of the chat logs. Recovering deleted files in this directory is annoying and a waste of time, so just please keep hands off the delete key. Thank you.*
