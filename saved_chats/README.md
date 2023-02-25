@@ -14,10 +14,10 @@ Using this tool is simple when set up properly, but setup does require a few ste
 Before running this script, download the *SingleFile* extension on your browser of choice. This extension makes sure that (1) all page HTML is exported and (2) saved pages have the proper naming convention for this script.
 
 **DOWNLOAD LINKS**
-- (Chrome)[https://chrome.google.com/webstore/detail/singlefile/mpiodijhokgodhhofbcjdecpffjipkle?hl=en]
-- (Safari)[https://apps.apple.com/us/app/singlefile-for-safari/id6444322545]
-- (Firefox)[https://addons.mozilla.org/en-US/firefox/addon/single-file/]
-- (GitHub)[https://github.com/gildas-lormeau/SingleFile]
+- [Chrome](https://chrome.google.com/webstore/detail/singlefile/mpiodijhokgodhhofbcjdecpffjipkle?hl=en)
+- [Safari](https://apps.apple.com/us/app/singlefile-for-safari/id6444322545)
+- [Firefox](https://addons.mozilla.org/en-US/firefox/addon/single-file/)
+- [GitHub](https://github.com/gildas-lormeau/SingleFile)
 
 ### **File setup** | Organizing files to use this script
 To properly save files for this scrip, perform the following steps:
