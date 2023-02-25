@@ -2,14 +2,14 @@
 (function() {
 
   var games = [{
-    name: "game1",
-    description: "game1 description",
-    image: "game1.png",
+    name: "Spot the Bot",
+    description: "Guess from three options which one is written by a human",
+    image: "spot-the-bot.png",
   },
   {
-    name: "game2",
+    name: "Outsmart the AI",
     description: "game2 description",
-    image: "game2.png",
+    image: "outsmart-the-ai.png",
   }];
 
   window.addEventListener("load", init);
