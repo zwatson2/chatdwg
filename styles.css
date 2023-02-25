@@ -1,77 +1,294 @@
+:root {
+    --side-menu-background-color: white;
+    --main-content-background-color: #F4EFF4;
+    --purple: #6750A4;
+    --light-purple: #8375a8;
+    --light-gray: #C9C5CA;
+    --gray: #939094;
+    --sideMenu-gameModeLogo-size: 1.2rem;
+}
+
 body {
-  margin: 0px;
-  padding: 0px;
-  font-family: Arial, Helvetica, sans-serif;
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Roboto', sans-serif;
+    color: var(--gray);
 }
 
-.container {
-  height: 100vh;
-  display: flex;
+.parentLayoutContainer {
+    height: 100vh;
+    display: flex;
 }
 
-.menu, .main {
-  padding: 20px;
+.layoutColumn {
+    padding: 20px;
 }
 
-.horizontal {
-  display: flex;
-  flex-direction: row;
+.horizontal-flex {
+    display: flex;
+    flex-direction: row;
 }
 
-.vertical {
-  display: flex;
-  flex-direction: column;
+.vertical-flex {
+    display: flex;
+    flex-direction: column;
 }
 
 .spaced {
-  justify-content: space-between;
+    justify-content: space-between;
 }
 
-.game-text {
-  justify-content: center;
-  align-items: left;
-  padding: 20px 10px;
+
+/*******SIDE MENU STYLES*******/
+
+#sideMenu {
+    width: 240px;
+    background-color: var(--side-menu-background-color);
 }
 
-.game-text > * {
-  margin: 0px;
+#menu-header h1 {
+    color: var(--gray);
+    font-weight: 1000;
 }
 
-.game > img {
-  width: 32px;
-  height: 32px;
+hr.menuDivider {
+    width: 100%;
+    border: 0.25px solid var(--light-gray);
 }
 
-.game {
-  align-items: center;
-}
-
-.menu {
-  width: 240px;
-  background-color: lightgray;
-}
-
-.main {
-  flex: 1;
-  background-color: lightblue;
-  align-items: center;
-  justify-content: center;
-}
-
-hr {
-  width: 100%;
-  border: 0.5px solid #333;
-}
-
-/* Hide left column when screen is less than 700px */
-@media screen and (max-width: 700px) {
-  .menu {
+.burgerMenuIcon {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 10px;
+    left: 20px;
     display: none;
-  }
+}
+
+
+/*Game Mode List Element (button to select each game mode)*/
+
+#menu-gameModesList .gameMode-element:hover {
+    color: var(--purple);
+    border: 0.5px solid var(--light-purple);
+    padding: calc(10px - 0.5px) calc(15px - 0.5px) calc(10px - 0.5px) 0px;
+    cursor: pointer;
+}
+
+#menu-gameModesList .gameMode-element {
+    background-color: var(--side-menu-background-color);
+    padding: 10px 15px 10px 0px;
+    border-radius: 10px;
+    /*top right bottom left*/
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /*don't allow users to highlight the text in these buttons*/
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+#menu-gameModesList .gameMode-element.selected {
+    background-color: var(--purple);
+}
+
+
+/*Game Mode Icon*/
+
+#menu-gameModesList .gameMode-element .gameModeIcon {
+    width: var(--sideMenu-gameModeLogo-size);
+    height: var(--sideMenu-gameModeLogo-size);
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+/*
+#menu-gameModesList .gameMode-element.selected .gameModeIcon {
+    /*TODO: Fix svg icon to change color on selected
+    /*Taken from: https://codepen.io/sosuke/pen/Pjoqqp
+    filter: invert(100%) sepia(100%) saturate(1%) hue-rotate(12deg) brightness(104%) contrast(101%);
+    color: var(--side-menu-background-color) !important;
+    fill: var(--side-menu-background-color) !important;
+    stroke: var(--side-menu-background-color) !important;
+}
+*/
+
+#menu-gameModesList .gameMode-element.selected .gameModeIcon .a {
+    color: var(--side-menu-background-color) !important;
+    /*fill: var(--side-menu-background-color) !important;*/
+    stroke: var(--side-menu-background-color) !important;
+}
+
+#menu-gameModesList .gameMode-element .gameModeIcon,
+
+/*Game Mode Title*/
+
+#menu-gameModesList .gameMode-element .gameModeTitle-container {
+    align-items: center;
+    /*adding display:flex decided to increase height so change it back to image size*/
+    height: var(--sideMenu-gameModeLogo-size);
+}
+
+#menu-gameModesList .gameMode-element .gameModeTitle {
+    display: inline;
+    /*color: #625B71;*/
+    font-weight: 600;
+}
+
+#menu-gameModesList .gameMode-element.selected .gameModeTitle {
+    /*Change color on button selected*/
+    color: var(--side-menu-background-color) !important;
+}
+
+
+/*Game Mode Description*/
+
+#menu-gameModesList .gameMode-element .gameModeDescription {
+    margin: 0;
+    /*make sure to indent the text description enough*/
+    margin-left: var(--sideMenu-gameModeLogo-size);
+    font-size: 0.8em;
+    line-height: 1.5;
+    padding-left: 20px;
+}
+
+#menu-gameModesList .gameMode-element.selected .gameModeDescription {
+    /*Change color on button selected*/
+    color: #EADDFF !important;
 }
 
 .footnote {
-  font-size: 0.8em;
-  color: gray;
-  font-style: italic;
+    font-size: 0.8em;
+    font-style: italic;
+}
+
+
+/*******MAIN CONTENT STYLES*******/
+
+.mainContent {
+    flex: 1;
+    background-color: var(--main-content-background-color);
+    align-items: center;
+    justify-content: center;
+    /*Content was cutting when we had a lot of it so fixing the margins allows it to be aligned to the top*/
+    margin-top: 0;
+    height: 100%;
+    /* margin-bottom: auto; */
+}
+
+.mainContent.hiddenMainContent {
+    display: none;
+}
+
+.titlePage {
+    text-align: center;
+}
+
+.titlePage h2 {
+    color: var(--purple);
+    font-size: 2rem;
+}
+
+.titlePage p:first-of-type {
+    font-size: 1.5rem;
+    margin-bottom: 5rem;
+}
+
+
+/*top right bottom left*/
+
+.spotCard {
+    display: flex;
+    font-size: 0.8rem;
+    padding: 2rem 2rem 2rem 2rem;
+    width: 17rem;
+    height: 10rem;
+    border: 0.5px solid var(--gray);
+    align-items: center;
+    border-radius: 20px;
+    margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+    background-color: white;
+    line-height: 1.5;
+    /*don't allow users to highlight the text in these buttons*/
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.spotCard:hover {
+    cursor: pointer;
+    box-shadow: 1px 1px 5px gray;
+}
+
+.userInputPage {
+    text-align: center;
+}
+
+.userInputPage h2 {
+    color: var(--purple);
+    margin-left: 1rem;
+    margin-right: 1rem;
+    font-weight: 500;
+}
+
+button {
+    background-color: var(--purple);
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem 0.7rem 1.5rem;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none
+}
+
+input[type="text"],
+input[type="text"]:active,
+input[type="text"]:focus {
+    width: 55vw;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid black;
+    /*top right bottom left*/
+    padding: 7.5px 10px 5px 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14pt;
+    color: var(--gray);
+}
+
+
+/* Hide left column when screen is less than 800px */
+
+@media only screen and (max-width: 800px) {
+    #sideMenu {
+        display: none;
+    }
+    .burgerMenuIcon {
+        display: block;
+    }
+    /**/
+    .spotCardParent {
+        flex-direction: column;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .spotCard {
+        padding: 1rem;
+        width: 80%;
+        overflow-y: auto;
+        overflow-x: clip;
+    }
+    .userInputPage h2 {
+        margin-top: 7rem;
+        font-size: 1.1rem;
+    }
 }

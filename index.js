@@ -1,71 +1,57 @@
-"use strict";
-(function() {
+let gameModeElements = document.querySelectorAll(".gameMode-element");
+let gameModeMainContents = document.querySelectorAll(".mainContent");
+let burgerMenuButtons = document.querySelectorAll(".burgerMenuIcon");
 
-  var games = [{
-    name: "Spot the Bot",
-    description: "Guess from three options which one is written by a human",
-    image: "spot-the-bot.png",
-  },
-  {
-    name: "Outsmart the AI",
-    description: "game2 description",
-    image: "outsmart-the-ai.png",
-  }];
-
-  window.addEventListener("load", init);
-
-  function init() {
-    console.log("init");
-    addMenuGames(games);
-  }
-
-  function menuGame(game) {
-    var gameDiv = create("div");
-    gameDiv.classList.add("horizontal", "game");
-
-    var gameImage = create("img");
-    gameImage.src = game.image;
-    gameDiv.appendChild(gameImage);
-
-    var gameText = create("div");
-    gameText.classList.add("game-text", "vertical");
-    gameDiv.appendChild(gameText);
-
-    var gameName = create("h3");
-    gameName.innerText = game.name;
-    gameText.appendChild(gameName);
-
-    var gameDescription = create("p");
-    gameDescription.innerText = game.description;
-    gameText.appendChild(gameDescription);
-
-    return gameDiv;
-  }
-
-  function addMenuGames(games) {
-    var test = qs("#game-modes");
-    test.innerHTML = "";
-    for (var i = 0; i < games.length; i++) {
-      console.log(games[i]);
-      test.appendChild(menuGame(games[i]));
+function selectGameMode(element) {
+    for (let i = 0; i < gameModeElements.length; i++) {
+        let gameModeElement = gameModeElements[i];
+        let gameModeMainContent = gameModeMainContents[i];
+        gameModeElement.classList.remove("selected");
+        gameModeMainContent.classList.add("hiddenMainContent");
+        if (element == gameModeElement) {
+            element.classList.add("selected");
+            //show the game content corresponding to this tab
+            gameModeMainContent.classList.remove("hiddenMainContent");
+            //Reset this game mode
+            let titlePageElement = gameModeMainContent.querySelector(".titlePage");
+            let userInputPage = gameModeMainContent.querySelector(".userInputPage");
+            titlePageElement.classList.remove("hidden");
+            userInputPage.classList.add("hidden");
+        }
     }
-  }
+}
+for (let element of gameModeElements) {
+    element.addEventListener("click", () => {
+        if (window.innerWidth < 800) {
+            document.getElementById("sideMenu").style.display = "none";
+        }
+        //Don't try to select the tab if we are already selected
+        //if (!element.classList.contains("selected")) {
+        selectGameMode(element);
+        //}
 
-  addMenuGames(games);
+    });
+    let currentTabIndex = [...gameModeElements].indexOf(element);
+    //Set each respective button should start its respective game
+    let titlePageElement = gameModeMainContents[currentTabIndex].querySelector(".titlePage");
+    let userInputPage = gameModeMainContents[currentTabIndex].querySelector(".userInputPage");
 
-  // =================== HELPER FUNCTIONS =================== //
+    //console.log(titlePageElement.querySelector("button"));
+    titlePageElement.querySelector("button").addEventListener("click", () => {
+        titlePageElement.classList.add("hidden");
+        userInputPage.classList.remove("hidden");
+    });
+}
 
-  function qs(selector) {
-    return document.querySelector(selector);
-  }
+burgerMenuButtons.forEach((burgerMenuBtn) => {
+    burgerMenuBtn.addEventListener("click", () => {
+        for (let i = 0; i < gameModeMainContents.length; i++) {
+            gameModeMainContents[i].classList.add("hiddenMainContent");
+        }
+        document.getElementById("sideMenu").style.display = "flex";
+        document.getElementById("sideMenu").style.width = "100%";
+    });
+});
 
-  function qsa(selector) {
-    return document.querySelectorAll(selector);
-  }
-
-  function create(type) {
-    return document.createElement(type);
-  }
-
-})();
-
+//Automatically select the first element
+selectGameMode(gameModeElements[0]);
