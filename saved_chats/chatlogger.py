@@ -26,10 +26,12 @@ def extract_chatlog(filepath):
   # Gets all chatgpt responses as DOM elements
   chats = soup.find_all('div', class_='min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap')
 
-  print(len(chats))
+  # Version number
+  version = soup.find('a').text
+  print('Messages saved: ' + str(len(chats)))
 
   # Creates an empty dataframe to store the chatlog
-  chat_list = pd.DataFrame(columns=['author', 'message', 'datetime'])
+  chat_list = pd.DataFrame(columns=['datetime', 'author', 'message', 'version'])
 
   # Loops through the chatgpt responses and adds them to the dataframe
   for i in range(len(chats)):
@@ -40,11 +42,10 @@ def extract_chatlog(filepath):
     else:
       user = 'chatgpt'
 
-    chat_list.loc[i] = [user, chat.text, file_name]
+    chat_list.loc[i] = [file_name, user, chat.text, version]
 
   # Saves dataframe to csv in the csv folder
   chat_list.to_csv('./csv/' + file_name + '.csv', index=False)
-
 
 def extract_all_chatlogs():
   # Gets all the html files in the saved_chats folder
@@ -52,8 +53,9 @@ def extract_all_chatlogs():
 
   # Loops through the html files and extracts the chatlog
   for html_file in html_files:
-    print(html_file)
+    print('=====================')
     extract_chatlog('./html/' + html_file)
+    print('=====================\n\n')
 
 
 def combine_chat_data():
@@ -61,12 +63,11 @@ def combine_chat_data():
   csv_files = os.listdir('./csv')
 
   # Creates an empty dataframe to store the chatlog
-  chat_list = pd.DataFrame(columns=['author', 'message', 'datetime'])
+  chat_list = pd.DataFrame(columns=['datetime', 'author', 'message', 'version'])
 
   # Loops through the csv files and adds them to the dataframe
   for csv_file in csv_files:
     chat_file = pd.read_csv('./csv/' + csv_file)
-    print(chat_file.shape)
     chat_list = pd.concat([chat_list, chat_file])
 
   # Saves dataframe to csv in the csv folder
